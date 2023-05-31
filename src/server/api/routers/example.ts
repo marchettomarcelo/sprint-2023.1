@@ -1,24 +1,23 @@
 import { z } from "zod";
-import {
-  createTRPCRouter,
-  publicProcedure,
-  protectedProcedure,
-} from "~/server/api/trpc";
+import { createTRPCRouter, protectedProcedure } from "../trpc";
+import { TRPCError } from "@trpc/server";
 
-export const exampleRouter = createTRPCRouter({
-  hello: publicProcedure
-    .input(z.object({ text: z.string() }))
-    .query(({ input }) => {
-      return {
-        greeting: `Hello ${input.text}`,
-      };
+export const userRouter = createTRPCRouter({
+  verifyEmail: protectedProcedure
+    .input(z.object({ userId: z.string() }))
+
+    .query(async ({ ctx, input }) => {
+      const validEmails = ["marchetto.marcelo@gmail.com"];
+
+      const email = ctx.session.user.email;
+      // console.log(validEmails.includes(authUserEmail));
+      if (email) {
+        return validEmails.includes(email);
+      } else {
+        throw new TRPCError({
+          code: "UNAUTHORIZED",
+          message: "Unauthorized",
+        });
+      }
     }),
-
-  getAll: publicProcedure.query(({ ctx }) => {
-    return ctx.prisma.example.findMany();
-  }),
-
-  getSecretMessage: protectedProcedure.query(() => {
-    return "you can now see this secret message!";
-  }),
 });

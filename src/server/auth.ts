@@ -5,8 +5,8 @@ import {
   type NextAuthOptions,
   type DefaultSession,
 } from "next-auth";
-import DiscordProvider from "next-auth/providers/discord";
-import { env } from "~/env.mjs";
+import EmailProvider from "next-auth/providers/email";
+import { createTransport } from "nodemailer";
 import { prisma } from "~/server/db";
 
 /**
@@ -47,9 +47,43 @@ export const authOptions: NextAuthOptions = {
   },
   adapter: PrismaAdapter(prisma),
   providers: [
-    DiscordProvider({
-      clientId: env.DISCORD_CLIENT_ID,
-      clientSecret: env.DISCORD_CLIENT_SECRET,
+    EmailProvider({
+      server: {
+        host: process.env.EMAIL_SERVER_HOST,
+        port: parseInt(process.env.EMAIL_SERVER_PORT as string),
+        auth: {
+          user: process.env.EMAIL_SERVER_USER,
+          pass: process.env.EMAIL_SERVER_PASSWORD,
+        },
+      },
+      from: process.env.EMAIL_FROM,
+      sendVerificationRequest: async function ({
+        identifier: email,
+        url,
+        provider: { server, from },
+      }) {
+        const { host } = new URL(url);
+        const transport = createTransport(server);
+
+        const validEmails = ["marchetto.marcelo@gmail.com"];
+
+        if (validEmails.includes(email)) {
+          const result = await transport.sendMail({
+            to: email,
+            from: from,
+            subject: `Bem vindo ao site: ${host}`,
+            text: `Sign in to ${host}\n\n${url}\n\n`,
+          });
+
+          const failed = result.rejected.concat(result.pending).filter(Boolean);
+
+          if (failed.length) {
+            throw new Error(
+              `Email(s) (${failed.join(", ")}) could not be sent`
+            );
+          }
+        }
+      },
     }),
     /**
      * ...add more providers here.
