@@ -1,0 +1,52 @@
+[
+  {
+    "nomeUsuario": "ana",
+    "data": "2023-05-31",
+    "horario": "09:30",
+    "descricao": "mock 1",
+    "local": "sao paulo",
+    "registroFotoVideo": "https://conexaoplaneta.com.br/wp-content/uploads/2020/02/enchentes-sao-paulo-conexao-planeta.jpg",
+    "mmChovido": 10,
+    "previsaoTempo": "sunny"
+  },
+  {
+    "nomeUsuario": "bruno",
+    "data": "2023-05-30",
+    "horario": "18:00",
+    "descricao": "mock 2",
+    "local": "rio de janeiro",
+    "registroFotoVideo": "https://conexaoplaneta.com.br/wp-content/uploads/2020/02/enchentes-sao-paulo-conexao-planeta.jpg",
+    "mmChovido": 15,
+    "previsaoTempo": "cloudy"
+  },
+  {
+    "nomeUsuario": "carlos",
+    "data": "2023-05-29",
+    "horario": "14:00",
+    "descricao": "mock 3",
+    "local": "belo horizonte",
+    "registroFotoVideo": "https://conexaoplaneta.com.br/wp-content/uploads/2020/02/enchentes-sao-paulo-conexao-planeta.jpg",
+    "mmChovido": 8,
+    "previsaoTempo": "rainy"
+  },
+  {
+    "nomeUsuario": "daniela",
+    "data": "2023-05-28",
+    "horario": "16:00",
+    "descricao": "mock 4",
+    "local": "porto alegre",
+    "registroFotoVideo": "https://conexaoplaneta.com.br/wp-content/uploads/2020/02/enchentes-sao-paulo-conexao-planeta.jpg",
+    "mmChovido": 7,
+    "previsaoTempo": "sunny"
+  },
+  {
+    "nomeUsuario": "elias",
+    "data": "2023-05-27",
+    "horario": "12:00",
+    "descricao": "mock 5",
+    "local": "recife",
+    "registroFotoVideo": "https://conexaoplaneta.com.br/wp-content/uploads/2020/02/enchentes-sao-paulo-conexao-planeta.jpg",
+    "mmChovido": 14,
+    "previsaoTempo": "cloudy"
+  }
+]

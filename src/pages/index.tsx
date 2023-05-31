@@ -6,7 +6,7 @@ import BaseLayout from "../components/BaseLayout";
 import Link from "next/link";
 import LogoDeOlho from "../../public/do2.png";
 import Image from "next/image";
-import { signIn, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 const Home: NextPage = () => {
   const { status } = useSession();
@@ -17,7 +17,7 @@ const Home: NextPage = () => {
         <h1 className="text-3xl font-extrabold">
           Você precisa estar autenticado para acessar essa página
         </h1>
-        <button onClick={() => signIn()}>login</button>
+        <button onClick={() => signIn()}>Login</button>
       </BaseLayout>
     );
   }
@@ -45,6 +45,7 @@ const Home: NextPage = () => {
         </Link>
       </div>
       <CreateOcorrenciaForm />
+      <button onClick={()=> signOut()}>Sair</button>
     </BaseLayout>
   );
 };

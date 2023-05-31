@@ -82,6 +82,10 @@ export const authOptions: NextAuthOptions = {
               `Email(s) (${failed.join(", ")}) could not be sent`
             );
           }
+        } else {
+          throw new Error(
+            `Email (${email}) could not be sent. Email not allowed`
+          );
         }
       },
     }),
