@@ -67,26 +67,24 @@ export const authOptions: NextAuthOptions = {
 
         const validEmails = ["marchetto.marcelo@gmail.com"];
 
-        if (validEmails.includes(email)) {
-          const result = await transport.sendMail({
-            to: email,
-            from: from,
-            subject: `Bem vindo ao site: ${host}`,
-            text: `Sign in to ${host}\n\n${url}\n\n`,
-          });
+        // if (validEmails.includes(email)) {
+        const result = await transport.sendMail({
+          to: email,
+          from: from,
+          subject: `Bem vindo ao site: ${host}`,
+          text: `Sign in to ${host}\n\n${url}\n\n`,
+        });
 
-          const failed = result.rejected.concat(result.pending).filter(Boolean);
+        const failed = result.rejected.concat(result.pending).filter(Boolean);
 
-          if (failed.length) {
-            throw new Error(
-              `Email(s) (${failed.join(", ")}) could not be sent`
-            );
-          }
-        } else {
-          throw new Error(
-            `Email (${email}) could not be sent. Email not allowed`
-          );
+        if (failed.length) {
+          throw new Error(`Email(s) (${failed.join(", ")}) could not be sent`);
         }
+        // } else {
+        //   throw new Error(
+        //     `Email (${email}) could not be sent. Email not allowed`
+        //   );
+        // }
       },
     }),
     /**
