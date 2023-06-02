@@ -3,6 +3,7 @@ import { createTRPCRouter, protectedProcedure } from "../trpc";
 import { TRPCError } from "@trpc/server";
 
 export const ocorrenciasRouter = createTRPCRouter({
+
   getOcorrencias: protectedProcedure
     .input(
       z.object({
@@ -23,4 +24,9 @@ export const ocorrenciasRouter = createTRPCRouter({
         previsaoTempo: "cloudy",
       };
     }),
+
+
+  // getOcorrenciasById: protectedProcedure
+  // deleteOcorrenciasById: protectedProcedure
+  // createOcorrenciasById: protectedProcedure
 });

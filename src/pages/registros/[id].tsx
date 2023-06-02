@@ -8,9 +8,11 @@ function PaginaRegistro() {
   const { query } = useRouter();
 
   const { data, isLoading } = api.ocorrencias.getOcorrencias.useQuery(
-    { id: query.id as string },
+    { id: "jasdadsc" },
     { enabled: !!query.id }
   );
+
+
   console.log(query);
 
   if (isLoading) {
