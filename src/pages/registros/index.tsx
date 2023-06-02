@@ -6,7 +6,7 @@ import registros from "../../utils/mock.json";
 function RegistrosPage() {
   return (
     <BaseLayout>
-      <Link href={"/"} className="w-fullc">
+      <Link href={"/"} className="w-full">
         <div className="border-opacity-94 flex w-full flex-col   items-center justify-center gap-4 rounded-lg border bg-white bg-opacity-75 p-4 text-2xl text-white shadow-md backdrop-blur-sm backdrop-filter ">
           <h2 className="font-bold text-black "> Adicionar novo registro + </h2>
         </div>

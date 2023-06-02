@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 import BaseLayout from "~/components/BaseLayout";
 import LoadingPage from "~/components/LoadingPage";
 import { api } from "~/utils/api";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 function PaginaRegistro() {
   const { query } = useRouter();
@@ -12,7 +14,6 @@ function PaginaRegistro() {
     { enabled: !!query.id }
   );
 
-
   console.log(query);
 
   if (isLoading) {
@@ -21,6 +22,46 @@ function PaginaRegistro() {
 
   if (!data) {
     return <div>Erro ao carregar</div>;
+  }
+
+  function hadleClick(){
+   const swalWithBootstrapButtons = Swal.mixin({
+     customClass: {
+       confirmButton: "bg-red-500 p-2 m-1 rounded-md text-white font-bold",
+       cancelButton: "bg-green-500 p-2 m-1 rounded-md text-white font-bold",
+     },
+     buttonsStyling: false,
+   });
+
+   swalWithBootstrapButtons
+     .fire({
+       title: "Você tem certeza que deseja deletar esse registro?",
+       text: "Essa ação não pode ser desfeita!",
+       icon: "warning",
+       showCancelButton: true,
+       confirmButtonText: "Deletar",
+       cancelButtonText: "Não deletar!",
+       reverseButtons: true,
+     })
+     .then((result) => {
+       if (result.isConfirmed) {
+         swalWithBootstrapButtons.fire(
+           "Deletado!",
+           "O registro foi deletado com sucesso.",
+           "success"
+         );
+       } else if (
+         /* Read more about handling dismissals below */
+         result.dismiss === Swal.DismissReason.cancel
+       ) {
+         swalWithBootstrapButtons.fire(
+           "Cancelado",
+           "O registro não foi deletado.",
+           "error"
+         );
+       }
+     });
+
   }
 
   console.log(data);
@@ -54,12 +95,20 @@ function PaginaRegistro() {
         title="YouTube video player"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       ></iframe>
+      <div className="flex w-full items-center justify-between">
+        <Link href={"/registros"}>
+          <button className="rounded-lg border bg-white px-4 py-2 font-bold underline">
+            Página de registros
+          </button>
+        </Link>
 
-      <Link href={"/registros"}>
-        <button className="rounded-lg border bg-white px-4 py-2 font-bold underline">
-          Página de registros
+        <button
+          className="rounded-lg border bg-white px-4 py-2 font-bold underline"
+          onClick={hadleClick}
+        >
+          Deletar registro
         </button>
-      </Link>
+      </div>
     </BaseLayout>
   );
 }
