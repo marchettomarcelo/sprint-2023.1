@@ -123,7 +123,7 @@ const CreateOcorrenciaForm: React.FC = () => {
           )}
         </div>
 
-        <div className="mb-4">
+        <div className="mb-4 flex flex-col justify-start items-start">
           <label className="mb-2 block text-sm font-bold" htmlFor="file">
             Insira uma imagem:
           </label>
@@ -132,7 +132,6 @@ const CreateOcorrenciaForm: React.FC = () => {
             endpoint="imageUploader"
             onClientUploadComplete={(res) => {
               // Do something with the response
-
               if (res) {
                 setFileUrl(res[0]?.fileUrl || null);
               }
@@ -146,7 +145,7 @@ const CreateOcorrenciaForm: React.FC = () => {
 
         <div className="flex items-center justify-center">
           <button
-            className=" cursor-pointer rounded border  px-4 py-2 font-bold focus:outline-none"
+            className=" w-1/3  cursor-pointer rounded border-2 border-black bg-orange-400  px-4 py-2 font-bold focus:outline-none"
             type="submit"
             value="Registrar"
           >
