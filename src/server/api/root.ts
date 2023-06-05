@@ -1,4 +1,4 @@
-import { ocorrenciasRouter } from "~/server/api/routers/example";
+import { ocorrenciasRouter } from "~/server/api/routers/denuncia";
 import { createTRPCRouter } from "~/server/api/trpc";
 
 /**
