@@ -3,6 +3,11 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
+import { UploadButton } from "@uploadthing/react";
+
+import type { OurFileRouter } from "~/server/uploadthing";
+// You need to import our styles for the button to look right. Best to import in the root /_app.tsx but this is fine
+import "@uploadthing/react/styles.css";
 
 const schema = z.object({
   date: z.date().refine((date) => date !== null, {
@@ -12,7 +17,6 @@ const schema = z.object({
   description: z.string().min(1, "Descrição é obrigatória"),
   name: z.string().min(1, "Nome é obrigatório"),
   location: z.enum(["option1", "option2"]),
-  file: z.any(),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -26,8 +30,15 @@ const CreateOcorrenciaForm: React.FC = () => {
     resolver: zodResolver(schema),
   });
 
+  const [fileUrl, setFileUrl] = React.useState<string | null>(null);
+
   const onSubmit = (data: FormData) => {
-    console.log(data);
+    if (!fileUrl) {
+      alert("Você precisa enviar uma foto");
+      return;
+    }
+
+    console.log(data, fileUrl);
   };
 
   return (
@@ -111,34 +122,36 @@ const CreateOcorrenciaForm: React.FC = () => {
             </p>
           )}
         </div>
+
         <div className="mb-4">
-          <label
-            className="mb-2 block text-sm font-bold"
-            htmlFor="file"
-          >
+          <label className="mb-2 block text-sm font-bold" htmlFor="file">
             Insira uma imagem:
           </label>
-          <input
-            className="focus:shadow-outline w-full appearance-none rounded border bg-white px-3 py-2 leading-tight shadow focus:outline-none"
-            {...register("file")}
-            type="file"
-            accept=".png"
-            onChange={(e) => {
-              return e.target.files ? e.target.files[0] : null;
+
+          <UploadButton<OurFileRouter>
+            endpoint="imageUploader"
+            onClientUploadComplete={(res) => {
+              // Do something with the response
+
+              if (res) {
+                setFileUrl(res[0]?.fileUrl || null);
+              }
+            }}
+            onUploadError={(error: Error) => {
+              // Do something with the error.
+              alert(`ERROR! ${error.message}`);
             }}
           />
-          {errors.file?.message && (
-            <p className="text-xs italic text-red-500">
-              {String(errors.file.message)}
-            </p>
-          )}
         </div>
+
         <div className="flex items-center justify-center">
-          <input
-            className="focus:shadow-outline rounded bg-orange-500 cursor-pointer px-4 py-2 font-bold text-white hover:bg-orange-600 focus:outline-none"
+          <button
+            className=" cursor-pointer rounded border  px-4 py-2 font-bold focus:outline-none"
             type="submit"
             value="Registrar"
-          />
+          >
+            Registrar
+          </button>
         </div>
       </form>
     </div>

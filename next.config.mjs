@@ -19,8 +19,12 @@ const config = {
     defaultLocale: "en",
   },
 
-  eslint:{
+  experimental: {
+    esmExternals: false,
+  },
+
+  eslint: {
     ignoreDuringBuilds: true,
-  }
+  },
 };
 export default config;
