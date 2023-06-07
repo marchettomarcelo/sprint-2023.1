@@ -12,9 +12,8 @@ function ShowMedia({
     let videoId = url.split("https://youtu.be/")[1];
     return "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
   }
-
-
-
+  
+  console.log(mediaLink, mediaType);
   if (mediaType === ".jpeg" || mediaType === ".png") {
     return <Image alt="Enchente" src={mediaLink} width={500} height={500} />;
   }

@@ -28,7 +28,7 @@ const config = {
   },
 
   images: {
-    domains: ["projquebrada.s3.amazonaws.com"],
+    domains: ["projquebrada.s3.amazonaws.com", "uploadthing.com"],
   },
 };
 export default config;
