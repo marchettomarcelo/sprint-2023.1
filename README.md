@@ -1,28 +1,54 @@
-# Create T3 App
+# Legião Pluviarcana
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+## Sobre o projeto
+Sprint Session 2023.1. Este repositórios contém o código usado na admin page do do projeto.
 
-## What's next? How do I make an app with this?
+Versão final do projeto:
+[Página de Administrador](https://sprint-2023-1.vercel.app/)
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+## Executando o projeto localmente
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+Clone o repositório e instale as dependências executando os seguintes comandos no terminal:
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+```bash
+git clone https://github.com/marchettomarcelo/sprint-2023.1.git
+npm install
+```
 
-## Learn More
+Execute o seguinte comando para iniciar o servidor de desenvolvimento:
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+```bash
+npm run dev
+```
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+Para rodar o projeto com você precisará de diversos outros serviços:
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+- Uma conexão com um banco de dados PostgreSQL
+- Um servidor de e-mail
+- Um serviço de upload de arquivos
 
-## How do I deploy this?
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+Nós optamos por utilizar o SendGrid como servidor de e-mail e o UploadThing como serviço de upload de arquivos. Para configurar o projeto para utilizar esses serviços, você precisará criar uma conta no SendGrid e no UploadThing. Após criar as contas, você precisará configurar as variáveis de ambiente necessárias para o projeto. Você pode fazer isso criando um arquivo `.env` na raiz do projeto e adicionando as variáveis de ambiente necessárias. Você pode encontrar uma lista das variáveis de ambiente necessárias abaixo.
+
+
+### Variáveis de ambiente necessárias
+
+`DATABASE_URL`: Esta variável representa a URL de conexão com o banco de dados. É usada para configurar a conexão com o banco de dados utilizado no projeto T3.
+
+`NEXTAUTH_SECRET`: Esta variável é usada pelo NextAuth.js, um framework de autenticação utilizado no projeto T3. O NEXTAUTH_SECRET é uma chave secreta usada para assinar tokens de autenticação e cookies.
+
+`NEXTAUTH_URL`: Esta variável define a URL base do aplicativo. É usada pelo NextAuth.js para construir URLs corretas durante o processo de autenticação.
+
+`EMAIL_SERVER_USER`: Essa variável armazena o nome de usuário utilizado para autenticação no servidor de e-mail. É usada para configurar o servidor de e-mail usado para enviar e-mails no aplicativo T3.
+
+`EMAIL_SERVER_PASSWORD`: Essa variável armazena a senha associada ao nome de usuário utilizado para autenticação no servidor de e-mail. Também é usada na configuração do servidor de e-mail para fins de autenticação.
+
+`EMAIL_SERVER_HOST`: Esta variável define o endereço do servidor de e-mail utilizado para enviar e-mails no aplicativo T3.
+
+`EMAIL_SERVER_PORT`: Essa variável especifica a porta utilizada para se conectar ao servidor de e-mail.
+
+`EMAIL_FROM`: Esta variável define o endereço de e-mail que será exibido como o remetente ao enviar e-mails a partir do aplicativo T3.
+
+`UPLOADTHING_SECRET`: Esta variável é uma chave secreta usada pelo UploadThing, uma ferramenta ou serviço de upload de arquivos. É usada para assinar e verificar as solicitações de upload de arquivos.
+
+`UPLOADTHING_APP_ID`: Esta variável representa o ID do aplicativo UploadThing. É usada para identificar o aplicativo ao se comunicar com o serviço de upload de arquivos.
