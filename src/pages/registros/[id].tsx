@@ -5,6 +5,7 @@ import LoadingPage from "~/components/LoadingPage";
 import { api } from "~/utils/api";
 import Swal from "sweetalert2";
 import { redirect } from "next/navigation";
+import ShowMedia from "~/components/ShowMedia";
 
 function PaginaRegistro() {
   const { query } = useRouter();
@@ -96,13 +97,8 @@ function PaginaRegistro() {
         </div>
       </div>
 
-      <iframe
-        width="800"
-        height="450"
-        src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
-        title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      ></iframe>
+      <ShowMedia mediaLink={data.link} mediaType={data.mediaType} />
+
       <div className="flex w-full items-center justify-between">
         <Link href={"/registros"}>
           <button className="rounded-lg border bg-white px-4 py-2 font-bold underline">

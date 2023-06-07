@@ -26,5 +26,9 @@ const config = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+
+  images: {
+    domains: ["projquebrada.s3.amazonaws.com"],
+  },
 };
 export default config;
