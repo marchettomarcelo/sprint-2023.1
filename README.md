@@ -8,6 +8,8 @@ Versão final do projeto:
 
 ## Executando o projeto localmente
 
+Primeiramente realize o download do [Node.js](https://nodejs.org/en). 
+
 Clone o repositório e instale as dependências executando os seguintes comandos no terminal:
 
 ```bash
