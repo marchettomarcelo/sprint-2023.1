@@ -35,8 +35,10 @@ function PaginaRegistro() {
   function hadleClick() {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
-        confirmButton: "bg-red-500 p-2 m-1 rounded-md text-white font-bold",
-        cancelButton: "bg-green-500 p-2 m-1 rounded-md text-white font-bold",
+        confirmButton:
+          "bg-red-500 border p-2 m-1 rounded-md text-black font-bold",
+        cancelButton:
+          "bg-green-500 border p-2 m-1 rounded-md text-black font-bold",
       },
       buttonsStyling: false,
     });

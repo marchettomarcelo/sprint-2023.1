@@ -82,6 +82,18 @@ export const ocorrenciasRouter = createTRPCRouter({
       })
     )
     .mutation(async ({ input }) => {
+
+      // check if link is a png or jpg
+      const link = input.link;
+      const linkArray = link.split(".");
+      const linkType = linkArray[linkArray.length - 1];
+
+      let mediaType = null;
+
+      if (linkType === "png" ) {
+        mediaType = ".png";
+      }
+
       const newPost = {
         nome: input.nome,
         dataEnchente: input.dataEnchente,
@@ -90,6 +102,7 @@ export const ocorrenciasRouter = createTRPCRouter({
         idade: input.idade,
         link: input.link,
         media: null,
+        mediaType: mediaType,
       };
       try {
         const data = await axios.post(`${baseUrl}/denuncia`, newPost);
